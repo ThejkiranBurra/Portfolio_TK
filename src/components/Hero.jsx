@@ -1,6 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { ArrowRight, Download } from 'lucide-react';
+import profileImg from '../assets/images/profile.png';
 
 const Hero = () => {
     return (
@@ -77,7 +78,7 @@ const Hero = () => {
                         {/* Main shape holding image */}
                         <div className="relative w-full max-w-[420px] aspect-square rounded-2xl overflow-hidden border border-dark-card bg-dark-card shadow-2xl flex items-center justify-center">
                             <img
-                                src="/src/assets/images/profile.png"
+                                src={profileImg}
                                 alt="Thejkiran"
                                 className="w-full h-full object-cover scale-110"
                             />
