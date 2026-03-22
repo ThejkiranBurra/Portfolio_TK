@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Github, ExternalLink, Code } from 'lucide-react';
+import { Github, ExternalLink, Code, FolderOpen, ArrowUpRight } from 'lucide-react';
 import diabetesImg from '../assets/images/diabetes_project.png';
 import powerbiImg from '../assets/images/powerbi_project.png';
 import osImg from '../assets/images/OS_project.png';
@@ -8,47 +8,58 @@ import sketchcolabImg from '../assets/images/sketchcolab.png';
 
 const ProjectCard = ({ project, index }) => (
     <motion.div
-        initial={{ opacity: 0, y: 20 }}
+        initial={{ opacity: 0, y: 30 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
-        transition={{ duration: 0.5, delay: index * 0.1 }}
-        className="glass-card overflow-hidden flex flex-col h-full group"
+        transition={{ duration: 0.6, delay: index * 0.1 }}
+        className="glass-card group flex flex-col h-full overflow-hidden"
     >
-        {/* Project Image */}
-        <div className="relative h-48 overflow-hidden block">
-            <div className="absolute inset-0 bg-gradient-to-t from-dark-bg/80 to-transparent z-10"></div>
+        {/* Project Image Base */}
+        <div className="relative aspect-video overflow-hidden">
             <img
                 src={project.image}
                 alt={project.title}
-                className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+                className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
             />
-            <div className="absolute top-4 right-4 z-20 flex gap-2">
-                <a href={project.github} target="_blank" rel="noopener noreferrer" className="p-2 bg-dark-bg/50 backdrop-blur-md rounded-full text-white hover:bg-primary-600 transition-colors">
-                    <Github size={18} />
-                </a>
-                <a href={project.live} target="_blank" rel="noopener noreferrer" className="p-2 bg-dark-bg/50 backdrop-blur-md rounded-full text-white hover:bg-primary-600 transition-colors">
-                    <ExternalLink size={18} />
+            
+            {/* Quick Links Overlay (Only visible on hover) */}
+            <div className="absolute inset-0 flex items-center justify-center gap-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-20 bg-primary-900/40">
+                <a href={project.github} target="_blank" rel="noopener noreferrer" className="p-3 bg-white text-dark-bg rounded-full hover:bg-primary-500 hover:text-white transition-all transform translate-y-4 group-hover:translate-y-0 duration-300">
+                    <Github size={20} />
                 </a>
             </div>
         </div>
 
-        {/* Content */}
+        {/* Project Content */}
         <div className="p-6 flex flex-col flex-grow">
-            <div className="flex items-center gap-2 text-primary-500 text-xs font-bold uppercase mb-2">
-                <Code size={14} />
-                {project.category}
+            <div className="flex items-center gap-2 mb-4">
+                <span className="px-3 py-1 rounded-full bg-primary-500/10 text-primary-400 text-[10px] font-bold uppercase tracking-widest border border-primary-500/20">
+                    {project.category}
+                </span>
             </div>
-            <h3 className="text-xl font-bold mb-2 group-hover:text-primary-500 transition-colors">{project.title}</h3>
-            <p className="text-dark-muted text-sm leading-relaxed mb-6 flex-grow">
+            
+            <h3 className="text-xl font-bold mb-3 text-white group-hover:text-primary-400 transition-colors">
+                {project.title}
+            </h3>
+            
+            <p className="text-dark-muted text-sm leading-relaxed mb-6 line-clamp-3">
                 {project.description}
             </p>
 
-            <div className="flex flex-wrap gap-2 mt-auto">
-                {project.tech.map(t => (
-                    <span key={t} className="text-[10px] font-medium px-2 py-0.5 rounded bg-primary-500/10 text-primary-400 border border-primary-500/20">
-                        {t}
-                    </span>
-                ))}
+            <div className="mt-auto pt-6 border-t border-white/5">
+                <div className="flex flex-wrap gap-2 mb-6">
+                    {project.tech.map(t => (
+                        <span key={t} className="text-[10px] text-dark-muted font-medium px-2 py-1 rounded bg-white/5">
+                            {t}
+                        </span>
+                    ))}
+                </div>
+                
+                <div className="flex items-center justify-start">
+                    <a href={project.github} target="_blank" rel="noopener noreferrer" className="text-xs font-bold text-white flex items-center gap-1 hover:text-primary-400 transition-colors">
+                        View Code <Github size={14} />
+                    </a>
+                </div>
             </div>
         </div>
     </motion.div>
@@ -95,26 +106,45 @@ const Projects = () => {
     ];
 
     return (
-        <section id="projects" className="py-24">
-            <div className="container mx-auto px-6">
-                <div className="flex flex-col md:flex-row justify-between items-end mb-12 gap-6">
+        <section id="projects" className="section-padding relative">
+            <div className="container-custom">
+                <div className="flex flex-col md:flex-row md:items-end justify-between gap-8 mb-16">
                     <div className="max-w-2xl">
-                        <h3 className="text-primary-500 font-medium uppercase tracking-tight mb-2">Featured Work</h3>
-                        <h2 className="text-4xl font-bold">Showcasing My Best Projects</h2>
+                        <motion.div
+                            initial={{ opacity: 0, x: -20 }}
+                            whileInView={{ opacity: 1, x: 0 }}
+                            viewport={{ once: true }}
+                            className="flex items-center gap-2 mb-4"
+                        >
+                            <div className="w-10 h-10 rounded-lg glass flex items-center justify-center text-primary-500">
+                                <FolderOpen size={20} />
+                            </div>
+                            <span className="text-sm font-bold tracking-widest uppercase text-primary-500">Portfolio</span>
+                        </motion.div>
+                        <h2 className="text-4xl md:text-5xl font-bold">Featured Projects</h2>
                     </div>
-                    <a href="#" className="btn-outline flex items-center gap-2">
-                        View All Projects <Github size={18} />
-                    </a>
                 </div>
 
-                <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div className="grid md:grid-cols-2 lg:grid-cols-2 gap-8">
                     {projects.map((p, i) => (
                         <ProjectCard key={p.title} project={p} index={i} />
                     ))}
                 </div>
+                
+                <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    className="mt-16 text-center"
+                >
+                    <a href="https://github.com/ThejkiranBurra" target="_blank" rel="noopener noreferrer" className="btn-outline inline-flex items-center gap-2 px-10">
+                        View All on GitHub <Github size={20} />
+                    </a>
+                </motion.div>
             </div>
         </section>
     );
 };
 
 export default Projects;
+

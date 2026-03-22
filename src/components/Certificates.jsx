@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { motion } from 'framer-motion';
-import { Award, Building2, CalendarDays, Sparkles } from 'lucide-react';
+import { Award, ExternalLink, Calendar, Building2, Medal, Sparkles } from 'lucide-react';
 import certGenAI from '../assets/cert_generative_ai.png';
 import certSocialNetworks from '../assets/cert_social_networks.png';
 import certComputerComm from '../assets/cert_computer_comm.jpg';
@@ -9,236 +9,148 @@ import certBusinessDev from '../assets/cert_business_dev.jpg';
 const certificates = [
     {
         title: "Master Generative AI & Generative AI Tools (ChatGPT & more)",
-        description: "Comprehensive training on Generative AI concepts, tools, and real-world applications including ChatGPT and more.",
         issuer: "Infosys Springboard",
         date: "Aug 2025",
-        color: "#0ea5e9",
-        skills: ["Generative AI", "ChatGPT", "Prompt Engineering", "NLP"],
         image: certGenAI,
         link: "https://drive.google.com/file/d/1Bjckjtf61RV3K_IRNrxeWzm2xtMkDnmW/view",
+        description: "Comprehensive training on generative AI, including ChatGPT, prompt engineering, and real-world AI applications.",
+        skills: ["Generative AI", "ChatGPT", "Prompt Engineering", "NLP"]
     },
     {
         title: "Social Networks",
-        description: "In-depth study of social network analysis, graph theory, community detection, and influence propagation.",
         issuer: "NPTEL",
         date: "April 2025",
-        color: "#22d3ee",
-        skills: ["Graph Theory", "Network Analysis", "Data Science"],
         image: certSocialNetworks,
         link: "https://drive.google.com/file/d/1XHF3sfhgr5cPETj7Wll9Rpn1jHC716x_/view",
+        description: "In-depth study of social network analysis, graph theory, community detection, and influence propagation algorithms.",
+        skills: ["Graph Theory", "Network Analysis", "Python", "Algorithms"]
     },
     {
         title: "Computer Communications Specialization Certificate",
-        description: "Specialized training in computer networking, protocols, data communication, and network architecture fundamentals.",
         issuer: "Coursera",
         date: "November 2024",
-        color: "#6366f1",
-        skills: ["Networking", "TCP/IP", "Protocols", "OSI Model"],
         image: certComputerComm,
         link: "https://www.coursera.org/account/accomplishments/specialization/BD9QSPYTFDOZ",
+        description: "Specialized training in computer networking, protocols, data communication, and network architecture.",
+        skills: ["Networking", "TCP/IP", "Protocols", "Architecture"]
     },
     {
-        title: "Business Development and Sales Processes – A Bird's Eye View",
-        description: "Overview of business development strategies, sales pipelines, customer acquisition, and market analysis techniques.",
+        title: "Business Development & Sales",
         issuer: "Udemy",
-        date: "October 2023",
-        color: "#a855f7",
-        skills: ["Sales Strategy", "Business Dev", "Marketing"],
+        date: "Oct 2023",
         image: certBusinessDev,
         link: "https://www.udemy.com/certificate/UC-190c8c8f-ef86-4742-8a54-d47faed8b345/",
+        description: "Mastered fundamental concepts of business development, B2B sales strategies, and client relationship management.",
+        skills: ["Sales", "B2B", "Communication", "Strategy"]
     },
 ];
 
-const CertificateCard = ({ title, description, issuer, date, color, skills, image, link, index }) => {
-    const [hovered, setHovered] = useState(false);
-
-    return (
-        <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: index * 0.12 }}
-            className="group relative rounded-2xl overflow-hidden border border-white/10 bg-white/5 backdrop-blur-md transition-all duration-300 hover:border-white/20 hover:bg-white/10"
-            style={{ minHeight: '380px' }}
-            onMouseEnter={() => setHovered(true)}
-            onMouseLeave={() => setHovered(false)}
-        >
-            {/* ===== DEFAULT FACE ===== */}
-            <div
-                className="flex flex-col h-full transition-opacity duration-400"
-                style={{ opacity: hovered ? 0 : 1, pointerEvents: hovered ? 'none' : 'auto' }}
-            >
-                {/* Certificate visual area */}
-                <div className="relative h-48 overflow-hidden" style={{ background: `linear-gradient(135deg, ${color}15, ${color}08)` }}>
-                    {image ? (
-                        <>
-                            <img src={image} alt={title} className="w-full h-full object-cover object-top" />
-                            <div className="absolute inset-0 bg-gradient-to-t from-dark-bg/60 to-transparent" />
-                            <span
-                                className="absolute top-3 left-3 text-[10px] font-bold uppercase tracking-widest px-2.5 py-1 rounded-md text-white z-10"
-                                style={{ backgroundColor: color }}
-                            >
-                                {issuer}
-                            </span>
-                            <span className="absolute top-3 right-3 text-[10px] font-medium text-white/80 z-10">
-                                {date}
-                            </span>
-                        </>
-                    ) : (
-                        <>
-                            <div className="absolute inset-0 flex items-center justify-center">
-                                <div className="relative w-[85%] h-[80%] rounded-lg border border-white/10 bg-dark-surface/60 backdrop-blur-sm flex flex-col items-center justify-center p-4 overflow-hidden">
-                                    <span
-                                        className="absolute top-3 left-3 text-[10px] font-bold uppercase tracking-widest px-2.5 py-1 rounded-md text-white"
-                                        style={{ backgroundColor: color }}
-                                    >
-                                        {issuer}
-                                    </span>
-                                    <span className="absolute top-3 right-3 text-[10px] font-medium text-dark-muted">
-                                        {date}
-                                    </span>
-                                    <Award size={32} style={{ color }} className="mb-2 mt-4 opacity-60" />
-                                    <p className="text-[11px] text-center text-dark-muted/70 leading-snug max-w-[80%]">
-                                        Certificate of Completion
-                                    </p>
-                                    <p className="text-[10px] text-center text-white/40 mt-1 font-medium truncate max-w-[90%]">
-                                        {title}
-                                    </p>
-                                    <div className="absolute bottom-3 left-4 right-4 border-t border-white/5" />
-                                </div>
-                            </div>
-                            <div className="absolute inset-0 bg-gradient-to-t from-dark-bg/40 to-transparent" />
-                        </>
-                    )}
+const CertificateCard = ({ cert, index }) => (
+    <motion.div
+        initial={{ opacity: 0, scale: 0.95 }}
+        whileInView={{ opacity: 1, scale: 1 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.5, delay: index * 0.1 }}
+        className="glass-card group flex flex-col h-[460px] overflow-hidden relative"
+    >
+        {/* Normal State */}
+        <div className="absolute inset-0 flex flex-col transition-opacity duration-500 group-hover:opacity-0 bg-dark-bg z-10 pointer-events-none group-hover:pointer-events-none">
+            <div className="h-[45%] w-full overflow-hidden bg-white/5 relative">
+                <img 
+                    src={cert.image} 
+                    alt={cert.title} 
+                    className="w-full h-full object-cover" 
+                />
+            </div>
+            <div className="p-6 flex flex-col flex-grow">
+                <h3 className="text-xl font-bold text-primary-400 mb-3 line-clamp-2">
+                    {cert.title}
+                </h3>
+                <p className="text-sm text-dark-muted line-clamp-3 mb-6">
+                    {cert.description}
+                </p>
+                <div className="mt-auto flex justify-between items-center text-sm font-semibold mb-6">
+                    <span className="text-dark-muted">{cert.issuer}</span>
+                    <span className="text-primary-500">{cert.date}</span>
                 </div>
-
-                {/* Info */}
-                <div className="flex flex-col flex-1 p-5">
-                    <h3 className="text-lg font-semibold leading-snug mb-2" style={{ color }}>
-                        {title}
-                    </h3>
-                    <p className="text-dark-muted text-sm leading-relaxed mb-4 flex-1">
-                        {description.length > 100 ? description.slice(0, 100) + '...' : description}
-                    </p>
-                    <div className="flex items-center justify-between">
-                        <span className="text-sm text-dark-muted font-medium">{issuer}</span>
-                        <span className="text-sm font-medium" style={{ color }}>{date}</span>
-                    </div>
-                </div>
-
-                {/* Hover hint */}
-                <div className="px-5 pb-4 pt-0">
-                    <p className="text-xs text-center text-dark-muted/50">Hover to view details</p>
+                <div className="text-center text-xs text-dark-muted/50 pb-2">
+                    Hover to view details
                 </div>
             </div>
+        </div>
 
-            {/* ===== HOVER FACE (overlay) ===== */}
-            <div
-                className="absolute inset-0 flex flex-col p-6 transition-opacity duration-400 rounded-2xl"
-                style={{
-                    opacity: hovered ? 1 : 0,
-                    pointerEvents: hovered ? 'auto' : 'none',
-                    background: `linear-gradient(160deg, ${color}18, ${color}08, transparent)`,
-                }}
-            >
-                {/* Title */}
-                <h3 className="text-xl font-bold leading-snug mb-6" style={{ color }}>
-                    {title}
-                </h3>
-
-                {/* Issued by */}
-                <div className="flex items-start gap-3 mb-4">
-                    <Building2 size={18} style={{ color }} className="mt-0.5 flex-shrink-0" />
+        {/* Hover State */}
+        <div className="absolute inset-0 bg-[#1a1c23]/95 backdrop-blur-sm p-6 flex flex-col opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-20">
+            <h3 className="text-2xl font-bold text-primary-400 mb-6 leading-tight line-clamp-3">
+                {cert.title}
+            </h3>
+            
+            <div className="space-y-4 mb-4">
+                <div className="flex items-start gap-3">
+                    <Building2 size={20} className="text-primary-500 mt-1 shrink-0" />
                     <div>
-                        <p className="text-xs text-dark-muted uppercase tracking-wide mb-0.5">Issued by:</p>
-                        <p className="text-sm font-semibold text-white">{issuer}</p>
+                        <div className="text-xs text-dark-muted uppercase tracking-widest mb-1">Issued By:</div>
+                        <div className="font-bold text-white text-sm">{cert.issuer}</div>
+                    </div>
+                </div>
+                
+                <div className="flex items-start gap-3">
+                    <Calendar size={20} className="text-primary-500 mt-1 shrink-0" />
+                    <div>
+                        <div className="text-xs text-dark-muted uppercase tracking-widest mb-1">Date:</div>
+                        <div className="font-bold text-white text-sm">{cert.date}</div>
                     </div>
                 </div>
 
-                {/* Date */}
-                <div className="flex items-start gap-3 mb-4">
-                    <CalendarDays size={18} style={{ color }} className="mt-0.5 flex-shrink-0" />
-                    <div>
-                        <p className="text-xs text-dark-muted uppercase tracking-wide mb-0.5">Date:</p>
-                        <p className="text-sm font-semibold text-white">{date}</p>
-                    </div>
-                </div>
-
-                {/* Skills */}
-                <div className="flex items-start gap-3 mb-auto">
-                    <Sparkles size={18} style={{ color }} className="mt-0.5 flex-shrink-0" />
-                    <div>
-                        <p className="text-xs text-dark-muted uppercase tracking-wide mb-2">Skills:</p>
+                <div className="flex items-start gap-3">
+                    <Sparkles size={20} className="text-primary-500 mt-1 shrink-0" />
+                    <div className="w-full">
+                        <div className="text-xs text-dark-muted uppercase tracking-widest mb-2">Skills:</div>
                         <div className="flex flex-wrap gap-2">
-                            {skills.map((skill, i) => (
-                                <span
-                                    key={i}
-                                    className="text-xs font-medium px-3 py-1 rounded-full border text-white/90"
-                                    style={{ borderColor: `${color}40`, backgroundColor: `${color}15` }}
-                                >
+                            {cert.skills?.map((skill, i) => (
+                                <span key={i} className="px-3 py-1 bg-white/5 border border-white/10 rounded-full text-[11px] font-medium text-white/80 whitespace-nowrap">
                                     {skill}
                                 </span>
                             ))}
                         </div>
                     </div>
                 </div>
-
-                {/* View Certificate button */}
-                <a
-                    href={link || '#'}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="block w-full mt-5 py-3 rounded-xl text-sm font-semibold border-2 transition-all duration-300 cursor-pointer text-center no-underline"
-                    style={{
-                        borderColor: color,
-                        color: color,
-                        backgroundColor: 'transparent',
-                    }}
-                    onMouseEnter={(e) => {
-                        e.currentTarget.style.backgroundColor = color;
-                        e.currentTarget.style.color = '#fff';
-                    }}
-                    onMouseLeave={(e) => {
-                        e.currentTarget.style.backgroundColor = 'transparent';
-                        e.currentTarget.style.color = color;
-                    }}
-                >
-                    View Certificate
-                </a>
             </div>
-        </motion.div>
-    );
-};
+
+            <a 
+                href={cert.link} 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="mt-auto w-full py-3 rounded-xl border border-primary-500 text-primary-500 hover:bg-primary-500 hover:text-white transition-all duration-300 flex justify-center items-center font-bold text-sm"
+            >
+                View Certificate
+            </a>
+        </div>
+    </motion.div>
+);
 
 const Certificates = () => {
     return (
-        <section id="certificates" className="py-24 bg-dark-surface/30">
-            <div className="container mx-auto px-6">
-                {/* Section Header */}
-                <div className="text-center max-w-2xl mx-auto mb-16">
-                    <motion.h3
+        <section id="certificates" className="section-padding relative">
+            <div className="container-custom">
+                <div className="text-center max-w-3xl mx-auto mb-16">
+                    <motion.div
                         initial={{ opacity: 0, y: 10 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
-                        className="text-primary-500 font-medium uppercase tracking-tight mb-2"
+                        className="flex items-center justify-center gap-2 mb-4"
                     >
-                        Credentials
-                    </motion.h3>
-                    <motion.h2
-                        initial={{ opacity: 0, y: 10 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true }}
-                        transition={{ delay: 0.1 }}
-                        className="text-4xl font-bold"
-                    >
-                        Certificates
-                    </motion.h2>
+                        <div className="w-10 h-10 rounded-lg glass flex items-center justify-center text-primary-500">
+                            <Medal size={20} />
+                        </div>
+                        <span className="text-sm font-bold tracking-widest uppercase text-primary-500">Credentials</span>
+                    </motion.div>
+                    <h2 className="text-4xl md:text-5xl font-bold">Certifications</h2>
                 </div>
 
-                {/* Certificate grid */}
-                <div className="max-w-5xl mx-auto grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+                <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
                     {certificates.map((cert, i) => (
-                        <CertificateCard key={i} {...cert} index={i} />
+                        <CertificateCard key={i} cert={cert} index={i} />
                     ))}
                 </div>
             </div>
@@ -247,3 +159,4 @@ const Certificates = () => {
 };
 
 export default Certificates;
+
