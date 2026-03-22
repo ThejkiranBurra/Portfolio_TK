@@ -11,7 +11,7 @@ const AchievementCard = ({ period, title, description, icon: Icon, color, index 
         className="relative flex flex-col items-center text-center group"
     >
         {/* Connection Line (Desktop) */}
-        {index !== 4 && (
+        {index !== 3 && (
             <div className="absolute top-[2.5rem] left-[calc(50%+2.5rem)] w-[calc(100%-5rem)] h-0.5 bg-gradient-to-r from-primary-500/50 to-transparent hidden lg:block"></div>
         )}
 
@@ -52,14 +52,7 @@ const Experience = () => {
             period: "DEC 2025",
             description: "Solved around 100+ problems on Leetcode, which significantly improved problem-solving skills.",
             icon: Trophy,
-        },
-        {
-            title: "Professional Training",
-            period: "JULY 2025",
-            description: "Completed Summer Training at LPU, building hands-on experience with production-level code.",
-            icon: Code,
-        },
-        {
+        },        {
             title: "Hackathon Top 10",
             period: "APR 2024",
             description: "Secured a Top 10 position in Hackathon Binary Blidz, demonstrating strong innovation.",
@@ -82,7 +75,7 @@ const Experience = () => {
                     </motion.div>
                 </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-12 lg:gap-8">
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-8">
                     {items.map((item, i) => (
                         <AchievementCard key={i} {...item} index={i} />
                     ))}

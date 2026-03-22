@@ -4,6 +4,7 @@ import { Github, ExternalLink, Code } from 'lucide-react';
 import diabetesImg from '../assets/images/diabetes_project.png';
 import powerbiImg from '../assets/images/powerbi_project.png';
 import osImg from '../assets/images/OS_project.png';
+import sketchcolabImg from '../assets/images/sketchcolab.png';
 
 const ProjectCard = ({ project, index }) => (
     <motion.div
@@ -80,6 +81,15 @@ const Projects = () => {
             tech: ["HTML/CSS", "JavaScript", "Bootstrap", "C++"],
             image: osImg,
             github: "https://github.com/tasish/Intelligent_CPU_Schedular",
+            live: "#"
+        },
+        {
+            title: "SketchColab",
+            category: "Real-time Collaboration",
+            description: "A high-performance, real-time collaborative whiteboard designed for remote brainstorming. Features instant stroke sync, screen sharing, and session recording.",
+            tech: ["React 19", "Node.js", "Socket.io", "WebRTC", "MongoDB", "Tailwind 4"],
+            image: sketchcolabImg,
+            github: "https://github.com/ThejkiranBurra/SketchColab",
             live: "#"
         }
     ];
