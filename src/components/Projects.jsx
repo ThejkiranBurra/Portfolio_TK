@@ -24,9 +24,14 @@ const ProjectCard = ({ project, index }) => (
             
             {/* Quick Links Overlay (Only visible on hover) */}
             <div className="absolute inset-0 flex items-center justify-center gap-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-20 bg-primary-900/40">
-                <a href={project.github} target="_blank" rel="noopener noreferrer" className="p-3 bg-white text-dark-bg rounded-full hover:bg-primary-500 hover:text-white transition-all transform translate-y-4 group-hover:translate-y-0 duration-300">
+                <a href={project.github} target="_blank" rel="noopener noreferrer" title="View Code" className="p-3 bg-white text-dark-bg rounded-full hover:bg-primary-500 hover:text-white transition-all transform translate-y-4 group-hover:translate-y-0 duration-300">
                     <Github size={20} />
                 </a>
+                {project.live && project.live !== "#" && (
+                    <a href={project.live} target="_blank" rel="noopener noreferrer" title={project.liveText || "Live Demo"} className="p-3 bg-primary-500 text-white rounded-full hover:bg-white hover:text-primary-500 transition-all transform translate-y-4 group-hover:translate-y-0 duration-300 delay-75">
+                        <ExternalLink size={20} />
+                    </a>
+                )}
             </div>
         </div>
 
@@ -55,10 +60,15 @@ const ProjectCard = ({ project, index }) => (
                     ))}
                 </div>
                 
-                <div className="flex items-center justify-start">
+                <div className="flex items-center gap-6">
                     <a href={project.github} target="_blank" rel="noopener noreferrer" className="text-xs font-bold text-white flex items-center gap-1 hover:text-primary-400 transition-colors">
                         View Code <Github size={14} />
                     </a>
+                    {project.live && project.live !== "#" && (
+                        <a href={project.live} target="_blank" rel="noopener noreferrer" className="text-xs font-bold text-primary-400 flex items-center gap-1 hover:text-white transition-colors">
+                            {project.liveText || "Live Demo"} <ExternalLink size={14} />
+                        </a>
+                    )}
                 </div>
             </div>
         </div>
@@ -74,7 +84,8 @@ const Projects = () => {
             tech: ["Power BI", "Power Query", "DAX", "Excel"],
             image: powerbiImg,
             github: "https://github.com/ThejkiranBurra/Global_Electronics_Retail_Analytics",
-            live: "#"
+            live: "https://www.linkedin.com/posts/burra-thejkiran-a20689278_powerbi-dataanalytics-retailanalytics-activity-7408158650835402752-Md86?utm_source=social_share_send&utm_medium=member_desktop_web&rcm=ACoAAEO7UngBsCU4np2K2izy9JVvz_g6UmVSWa0",
+            liveText: "View Post"
         },
         {
             title: "Diabetes Prediction System",
@@ -83,7 +94,8 @@ const Projects = () => {
             tech: ["Python", "Pandas", "Scikit", "Streamlit"],
             image: diabetesImg,
             github: "https://github.com/ThejkiranBurra/Predictive_Analytics_Diabetes",
-            live: "#"
+            live: "https://www.linkedin.com/posts/burra-thejkiran-a20689278_machinelearning-datascience-python-ugcPost-7410923092778135552-ZQcD?utm_source=social_share_send&utm_medium=member_desktop_web&rcm=ACoAAEO7UngBsCU4np2K2izy9JVvz_g6UmVSWa0",
+            liveText: "View Post"
         },
         {
             title: "Intelligent CPU Scheduler",
@@ -92,7 +104,7 @@ const Projects = () => {
             tech: ["HTML/CSS", "JavaScript", "Bootstrap", "C++"],
             image: osImg,
             github: "https://github.com/tasish/Intelligent_CPU_Schedular",
-            live: "#"
+            live: "https://cpuscheduler.vercel.app/"
         },
         {
             title: "SketchColab",
@@ -101,7 +113,7 @@ const Projects = () => {
             tech: ["React 19", "Node.js", "Socket.io", "WebRTC", "MongoDB", "Tailwind 4"],
             image: sketchcolabImg,
             github: "https://github.com/ThejkiranBurra/SketchColab",
-            live: "#"
+            live: "https://sketch-colab-client.vercel.app/"
         }
     ];
 
